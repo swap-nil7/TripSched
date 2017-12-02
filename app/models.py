@@ -8,11 +8,11 @@ class Profile(models.Model):
     birth_date = models.DateField(null=True)
     phone = models.IntegerField(null=True, blank=True)
 
-#@receiver(post_save, sender=User)
-#def update_user_profile(sender, instance, created, **kwargs):
-#    if created:
-#        profile.objects.create(user=instance)
-#    instance.profile.save()
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
 
 class Place(models.Model):
     name = models.TextField()
