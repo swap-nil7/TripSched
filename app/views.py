@@ -40,6 +40,14 @@ def signup(request):
 			form = SignUpForm()
 		return render(request, 'signup.html', {'form': form})
 
+def optimise(request):
+'''
+	core function. workflow: collect start and end time of trip from user,
+	and make a syscall to the C++ executable binary. The optimisation 
+	algorithm has been implemented in c++ for efficient and fastest execution.
+'''
+	
+
 def review(request):
 	if request.method == 'POST' and request.user.is_authenticated():
 		form = ReviewForm(request.POST)
