@@ -7,6 +7,8 @@ using namespace std;
 
 double maxsatisfaction=0;
 int maxseq=-1;
+int starttime, endtime;
+int totaltime;
 
 //places are assigned a specific unsigned integer id
 
@@ -37,23 +39,33 @@ vector<int>placedist;
 //defining a vector for ratings of a place
 vector<double>ratings;
 
+//defining a vector for opening time of all places in minutes integer format considering 0:00 as 0
+vector<int>optime;
+
+//defining a vector for opening time of all places in minutes integer format considering 0:00 as 0
+vector<int>cltime;
+
 //sequences of visits
 vector<vector<int>> visitseq;
 
 
-void algo(int current, int timeleft, vector<int> vect){
+void algo(int current, int timeleft, int pretime, vector<int> vect){
 	vect.pb(current);
 	sort(vect.begin(), vect.end());
 	if(current==-1){
 		for(int i=0; i<5; i++){
 			int timerec=timeleft;
-			if((spdis[i].second+placedist[spdis[i].first]+epdis[spdis[i].first])<=timeleft){
-				timerec=timeleft-spdis[i].second-placedist[spdis[i].first];
-				algo(spdis[i].first, timerec, vect);
-			}
-			else{
-				if(vect.size()>1){
-					visitseq.pb(vect);
+			int reachtime=pretime+spdis[i].second;
+			int departtime=reachtime+placedist[spdis[i].first];
+			if(reachtime>=optime[spdis[i].first] && departtime<=cltime[spdis[i].first]){
+				if((spdis[i].second+placedist[spdis[i].first]+epdis[spdis[i].first])<=timeleft){
+					timerec=timeleft-spdis[i].second-placedist[spdis[i].first];
+					algo(spdis[i].first, timerec, departtime, vect);
+				}
+				else{
+					if(vect.size()>1){
+						visitseq.pb(vect);
+					}
 				}
 			}
 		}
@@ -61,14 +73,18 @@ void algo(int current, int timeleft, vector<int> vect){
 	else{
 		for(int i=0; i<5; i++){
 			int timerec=timeleft;
-			if(!binary_search(vect.begin(), vect.end(), distvect[current][i].first)){
-				if((distvect[current][i].second+placedist[distvect[current][i].first]+epdis[distvect[current][i].first])<=timeleft){
-					timerec=timeleft-distvect[current][i].second-placedist[distvect[current][i].first];
-					algo(distvect[current][i].first, timerec, vect);
-				}
-				else{
-					if(vect.size()>1){
-						visitseq.pb(vect);
+			int reachtime=pretime+distvect[current][i].second;
+			int departtime=reachtime+placedist[distvect[current][i].first];
+			if(reachtime>optime[distvect[current][i].first] && departtime<cltime[distvect[current][i].first]){
+				if(!binary_search(vect.begin(), vect.end(), distvect[current][i].first)){
+					if((distvect[current][i].second+placedist[distvect[current][i].first]+epdis[distvect[current][i].first])<=timeleft){
+						timerec=timeleft-distvect[current][i].second-placedist[distvect[current][i].first];
+						algo(distvect[current][i].first, timerec, departtime ,vect);
+					}
+					else{
+						if(vect.size()>1){
+							visitseq.pb(vect);
+						}
 					}
 				}
 			}
@@ -87,8 +103,11 @@ int main() {
 	cin>>sp;
 	
 	cin>>ep;
-	int totaltime;
-	sd(totaltime);
+	
+	sd(starttime);
+	sd(endtime);
+
+	totaltime=endtime-starttime;
 
 	int margin=int(0.15*totaltime);
 
@@ -100,8 +119,6 @@ int main() {
 	int dist[MAXN][MAXN];
 	//defining an array for the time of all places from the ending point
 	int epdist[MAXN];
-	//defining an array for locations that can be visited from a location
-	int nearby[MAXN][5];
 
 
 	//input from our database
@@ -128,8 +145,20 @@ int main() {
 	}
 
 	//sort(epdis.begin(), epdis.end(), sortcol);
-	int minv=INF;
 
+	for(int i=0; i<MAXN; i++){
+		int a;
+		sd(a);
+		optime.pb(a);
+	}
+
+	for(int i=0; i<MAXN; i++){
+		int a;
+		sd(a);
+		cltime.pb(a);
+	}
+
+	int minv=INF;
 	for(int i=0; i<MAXN; i++){
 		int a;
 		sd(a);
@@ -148,8 +177,9 @@ int main() {
 	
 	for(int i=0; i<MAXN; i++){
 		double z1 = ratings[i];
-		double z2 = (double(placedist[i])/double(minv))*5;
-		satisfy[i] = z1+z2;
+		double z2 = (double(minv)/double(placedist[i]))*5;
+		double z = z1+z2;
+		satisfy.pb(z);
 	}
 	
 
@@ -164,22 +194,28 @@ int main() {
 
 
 	vector<int> vect;
-	algo(-1, totaltime+margin, vect);
+	algo(-1, totaltime+margin, starttime, vect);
 
-	for(int i=0; i<visitseq.size(); i++){
-		double satisfaction=0.0;
-		for(int j=0; j<visitseq[i].size(); j++){
-			satisfaction+=satisfy[visitseq[i][j]];
-		}
-		if(satisfaction>maxsatisfaction){
-			maxseq=i;
-			maxsatisfaction=satisfaction;
-		}
-	}
 
-	for(int i=1; i<visitseq[maxseq].size(); i++){
-		cout<<visitseq[maxseq][i]<<endl;
+	if(visitseq.size()){
+		for(int i=0; i<visitseq.size(); i++){
+			double satisfaction=0.0;
+			for(int j=0; j<visitseq[i].size(); j++){
+				satisfaction+=satisfy[visitseq[i][j]];
+			}
+			if(satisfaction>maxsatisfaction){
+				maxseq=i;
+				maxsatisfaction=satisfaction;
+			}
+		}
+
+		for(int i=1; i<visitseq[maxseq].size(); i++){
+			cout<<visitseq[maxseq][i]<<endl;
+		}
+		cout<<maxsatisfaction<<endl;
 	}
-	cout<<maxsatisfaction<<endl;
+	else{
+		cout<<"Sorry! There are no possible plans."<<endl;
+	}
 	return 0;
 }	
