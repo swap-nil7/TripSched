@@ -19,10 +19,12 @@
    <a class="navbar-brand " id="nav-hd" href="#">TripSched</a>
     </div> 
     <ul class="nav navbar-nav navbar-right nav-ul" style="margin-left:-50px; ">
-       <form class="form-inline login-form" >
-    <input type="text" placeholder="Email or Phone" class=" login-text transp" id="email">
+       <form class="form-inline login-form" method="post">
+        {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input type="text" name="username" autofocus maxlength="254" required id="id_username" class=" login-text transp" placeholder="Username">
 
-    <input type="password" placeholder="password" class=" login-text transp" id="pwd">
+    <input type="password" name="password" required id="id_password" class=" login-text transp" placeholder="Password">
     <button  type="submit" class="submit-button transp">Login</button>
     	<br><div class="forgot">Forgot Password?</div>
     
@@ -76,7 +78,7 @@ margin: 0 auto;"><a href="signup.html" class="sign"><div>Create an account</div>
         	<div class="img-hd">HOME TO MUST-VISIT ISLANDS</div>
         	<div class="img-cont">Fateh Sagar Lake is a charming lake surrounded by hills and woods. This artificial lake was constructed by Maharana Jai Singh in 1678 AD and it lies north of Lake Pichola. It was later reconstructed during the reign of Maharana Fateh Singh (1884-1930 AD) after the earthen bund (dam) was washed away in floods. The Maharana built Connaught Dam to commemorate the visit of the Duke of Connaught and the lake was renamed Fateh Sagar Lake.</div>
         <div style="width: 400px;
-margin: 0 auto;"><a href="signup.html" class="sign"><div>Create an account</div></a>
+margin: 0 auto;"><a href="signup" class="sign"><div>Create an account</div></a>
  </div>
           <h3>Fateh Sagar Lake</h3>
           <p>Highly visited, 4.4 stars!</p>

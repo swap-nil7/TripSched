@@ -8,9 +8,8 @@ from app.views import *
 
 urlpatterns = [
     # Examples:
-    url(r'^$', home, name='home'),
 
-    url(r'^login/$', custom_login, {'template_name': 'login.html'}, name='login'),
+    url(r'^$', custom_login, {'template_name': 'index.html'}, name='home'),
     url(r'^logout/$', custom_logout, {'next_page': 'home'}, name='logout'),
     url(r'^signup/$', signup, name='signup'),
 

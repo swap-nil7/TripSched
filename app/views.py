@@ -10,10 +10,19 @@ from .forms import SignUpForm, ReviewForm
 # Create your views here.
 
 def home(request):
-	return render(request, 'index.html')
+	if request.user.is_authenticated():
+		return render(request, 'home.html')
+	else:
+		if request.method == 'POST':
+			return custom_login()
+		else:
+			return render(request, 'index.html')
 
 def custom_login(request, **kwargs):
-    return contrib_login(request, **kwargs)
+	if request.user.is_authenticated():
+		return render(request, 'home.html')
+	else:
+		return contrib_login(request, **kwargs)
 
 @login_required
 def custom_logout(request, **kwargs):
@@ -39,6 +48,7 @@ def signup(request):
 		else:
 			form = SignUpForm()
 		return render(request, 'signup.html', {'form': form})
+
 
 def review(request):
 	if request.method == 'POST' and request.user.is_authenticated():
