@@ -1,0 +1,100 @@
+	
+body{
+	background: rgb(50,55,45);
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color:#666;;
+    opacity: 1; /* Firefox */
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Montserrat Regular"), local("Montserrat-Regular"), url("https://fonts.gstatic.com/s/montserrat/v12/zhcz-_WihjSQC0oHJ9TCYPk_vArhqVIZ0nv9q090hN8.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152-153, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+.forum{
+	display: flex;
+	background: white;
+	border-radius: 3px;
+	flex-direction: column;
+	width: 500px;
+	margin: 50px auto;
+	align-items: center;
+	box-shadow: 3px 2px 5px rgb(150,150,140);
+	justify-content: space-between;
+}
+.form-c{
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 80%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #666;
+	font-size: 15px;
+	
+	margin: 10px 10px;
+	
+	}
+	.pl{
+		display: flex;
+		width: 100%;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+.phead{
+	font-size: 28px;
+	color: #666;
+	text-transform: uppercase;
+	font-family: "Montserrat";
+	margin-top: 20px;
+	margin-left: 120px;
+
+}
+.close{
+	align-self: right;
+	font-size: 20px;
+	margin-right: 5px;
+	margin-top: 5px;
+	color: #666;
+	cursor:pointer;
+	font-family: "Montserrat";
+	font-weight: 800;
+	padding: 1px 4px;
+	border-radius:3px; 
+	border: #666 solid 2px;
+}
+.sub-btn{
+	width: 150px;
+	background: #f28281;
+	
+	color: white;
+	border: 0 none;
+	border-radius: 2px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px 20px 5px;
+	font-size: 20px;
+}
+.sub-btn:hover , .sub-btn:focus{
+	background: #d9534f;
+
+}
+.rating{
+	font-size:36px;
+	align-self: left;
+	direction: rtl;
+	margin-left: 50px;
+	color: #666;
+	text-shadow: .5px .5px .1px rgb(90,85,90);
+	cursor:pointer;
+	margin-top: 15px;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+   color: #FFDF00;
+}

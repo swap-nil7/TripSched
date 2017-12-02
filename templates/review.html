@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>
+   Place Review
+ </title>
+</head>
+<body>
+	
+<div class="review-body">
+     <link rel="stylesheet" type="text/css" href="static/css/reset.css">
+     <link rel="stylesheet" type="text/css" href="static/css/review.css">
+     <link href="https://fonts.googleapis.com/css?family=Ek+Mukta:300,400,600|Open+Sans:400,800" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Ek+Mukta:300,400,600|Open+Sans:400,800" rel="stylesheet">  
+     <link rel="stylesheet" href="static/css/style1.css">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>		
+     <form method="post" class="forum" action="">
+	 <div class="pl"><div class="phead">Place Review</div><div class="close">X</div></div>
+	 <input type="text" class="form-c" name="email" placeholder="Email" />
+    <input type="text" name="name" class="form-c" placeholder="Name" />
+    <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+  <ul class="value-list">
+    <li>Udaipur City Palace</li>
+    <li>Lake Palace</li>
+    <li>Jag Mandir</li>
+    <li>Monsoon Palace</li>
+    <li>Ahar Museum</li>
+    <li>Jagdish Temple</li>
+    <li>Fateh Sagar Lake</li>
+    <li>Lake Pichola</li>
+    <li>Saheliyon ki Bari</li>
+    <li>Gulab Bagh and Zoo</li>
+    <li>Sukhadia Circle</li>
+    <li>Puppet Show at Bharatiya Lok Kala Mandal</li>
+    <li>Bagore ki Haveli</li>
+    <li>Shilpgram</li>
+    <li>Udai Sagar Lake</li>
+    <li>Haldighati</li>
+    <li>Doodh Talai Lake</li>
+    <li>Jaisamand Lake</li>
+    <li>Navalakha Mahal</li>
+    <li>Wax Museum</li>
+    
+  </ul>
+<input type="hidden" class="form-c r" name="rate" value="5">
+<div class="rating">
+<span id="s5">&#9734;</span><span id="s4">&#9734;</span><span id="s3">&#9734;</span><span id="s2">&#9734;</span><span id="s1">&#9734;</span>
+</div>
+<textarea class="form-c" placeholder="Write A review"></textarea>
+<input type="submit" value="Submit Review" class="sub-btn"  name="Sub">
+</form>
+<script>
+$(document).ready(function(){
+    $("#s1").click(function(){
+    	$("#s1 ").html("&#9733;");
+        $("#s1").css("color", "#FFA500");
+        $("#s2 ").html("&#9734;");
+        $("#s2").css("color", "#666");
+        $("#s3 ").html("&#9734;");
+        $("#s3").css("color", "#666");
+        $("#s4 ").html("&#9734;");
+        $("#s4").css("color", "#666");
+        $("#s5 ").html("&#9734;");
+        $("#s5").css("color", "#666");
+        $(".r").val(1);
+      
+    });
+    $("#s2").click(function(){
+    	$("#s1 ").html("&#9733;");
+        $("#s1").css("color", "#FFA500");
+        $("#s2 ").html("&#9733;");
+        $("#s2").css("color", "#FFA500");
+        $("#s3 ").html("&#9734;");
+        $("#s3").css("color", "#666");
+        $("#s4 ").html("&#9734;");
+        $("#s4").css("color", "#666");
+        $("#s5 ").html("&#9734;");
+        $("#s5").css("color", "#666");
+        $(".r").val(2);
+    });
+      $("#s3").click(function(){
+    	$("#s1 ").html("&#9733;");
+        $("#s1").css("color", "#FFA500");
+        $("#s2 ").html("&#9733;");
+        $("#s2").css("color", "#FFA500");
+        $("#s3 ").html("&#9733;");
+        $("#s3").css("color", "#FFA500");
+        $("#s4 ").html("&#9734;");
+        $("#s4").css("color", "#666");
+        $("#s5 ").html("&#9734;");
+        $("#s5").css("color", "#666");
+        $(".r").val(3);
+    });
+       $("#s4").click(function(){
+    	$("#s1 ").html("&#9733;");
+        $("#s1").css("color", "#FFA500");
+        $("#s2 ").html("&#9733;");
+        $("#s2").css("color", "#FFA500");
+        $("#s3 ").html("&#9733;");
+        $("#s3").css("color", "#FFA500");
+        $("#s4 ").html("&#9733;");
+        $("#s4").css("color", "#FFA500");
+        $("#s5 ").html("&#9734;");
+        $("#s5").css("color", "#666");
+        $(".r").val(4);
+    });
+          $("#s5").click(function(){
+    	$("#s1 ").html("&#9733;");
+        $("#s1").css("color", "#FFA500");
+        $("#s2 ").html("&#9733;");
+        $("#s2").css("color", "#FFA500");
+        $("#s3 ").html("&#9733;");
+        $("#s3").css("color", "#FFA500");
+        $("#s4 ").html("&#9733;");
+        $("#s4").css("color", "#FFA500");
+        $("#s5 ").html("&#9733;");
+        $("#s5").css("color", "#FFA500");
+        $(".r").val(5);
+    });
+           $(".close").click(function(){
+           	$(".review-body").hide();
+
+           });
+
+});
+</script>
+<script src="js/index.js"></script>
+</div>
+
+</body>
+</html>
