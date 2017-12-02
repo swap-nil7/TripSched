@@ -10,8 +10,7 @@ from .forms import SignUpForm, ReviewForm
 # Create your views here.
 
 def home(request):
-	myuser=request.user
-	return render(request, 'home.html')
+	return render(request, 'index.html')
 
 def custom_login(request, **kwargs):
     return contrib_login(request, **kwargs)

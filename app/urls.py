@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from app.models import *
-from app import *
+from app.views import *
 
 urlpatterns = [
     # Examples:
