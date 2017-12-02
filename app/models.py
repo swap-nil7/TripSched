@@ -8,18 +8,20 @@ class Profile(models.Model):
     birth_date = models.DateField(null=True)
     phone = models.IntegerField(null=True, blank=True)
 
-@receiver(post_save, sender=User)
-def update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        profile.objects.create(user=instance)
-    instance.profile.save()
+#@receiver(post_save, sender=User)
+#def update_user_profile(sender, instance, created, **kwargs):
+#    if created:
+#        profile.objects.create(user=instance)
+#    instance.profile.save()
 
 class Place(models.Model):
     name = models.TextField()
     timevisit = models.IntegerField(null=True, blank=True)
     rating = models.DecimalField(max_digits=10, decimal_places=9, blank=True)
     info = models.TextField()
-    place_id = models.TextField()
+    placeid = models.TextField()
+    def __str__(self):
+        return self.name
 
 class Days(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
