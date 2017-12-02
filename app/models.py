@@ -16,11 +16,10 @@ def update_user_profile(sender, instance, created, **kwargs):
 
 class Place(models.Model):
     name = models.TextField()
-    lattitude = models.DecimalField(max_digits=10, decimal_places=7)
-    longitude = models.DecimalField(max_digits=10, decimal_places=7)
     timevisit = models.IntegerField(null=True, blank=True)
     rating = models.DecimalField(max_digits=10, decimal_places=9, blank=True)
     info = models.TextField()
+    place_id = models.TextField()
 
 class Days(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
