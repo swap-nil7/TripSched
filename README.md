@@ -3,9 +3,10 @@ TripSched is a tourism app that uses an intelligent scheduling algorithm to plan
 The algorithm takes into account the rating of the place, opening and closing time of place, time required to reach the location, time spent at the location, time required to reach the next loction, etc. to predict the best possible plan.
 
 Future Prospects:-
+
 Short Term Goals
-The algorithm will also take into account the number of visits of a particular location.
-The algorithm will also include more filters like particular wishlist, age, etc.
+1. The algorithm will also take into account the number of visits of a particular location.
+2. The algorithm will also include more filters like particular wishlist, age, etc.
 
 Long Term Goals
 1. The application will collaborate with conveyance providers like OLA, Uber, etc. to provide user with the conveyance between locations, hence providing more convenience to the user.
